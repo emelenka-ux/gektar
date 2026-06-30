@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Блог ГектарЪ</title>
+  <meta name="description" content="Читайте полезные статьи о земельных инвестициях на блоге Гектарь.">
+  <link rel="icon" type="image/png" href="/images/logo.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #1a1a1a;
+      --bg-card: #111111;
+      --accent-gold: #a08050;
+      --accent-gold-hover: #8a7045;
+      --accent-green: #4ade80;
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-muted: rgba(255, 255, 255, 0.5);
+      --border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-link.active {
+      color: var(--accent-gold);
+    }
+
+    .btn-primary {
+      background: var(--accent-gold);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-gold-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Article Header */
+    .article-header {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 8rem 1.5rem 4rem;
+      margin-top: 0;
+    }
+
+    .article-hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .article-header-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 10, 0.3) 0%,
+        rgba(10, 10, 10, 0.7) 50%,
+        var(--bg-primary) 100%
+      );
+      z-index: 1;
+    }
+
+    .article-header-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .article-date {
+      color: var(--accent-gold);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .article-date::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: var(--accent-gold);
+      border-radius: 50%;
+    }
+
+    .article-category {
+      background: rgba(160, 128, 80, 0.2);
+      color: var(--accent-gold);
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .article-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Article Content */
+    .article-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 6rem;
+    }
+
+    .article-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+
+    .article-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    .article-content h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 3rem 0 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .article-content h3 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 2rem 0 1rem;
+    }
+
+    .article-content ul,
+    .article-content ol {
+      margin: 1.5rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .article-content li {
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+
+    .article-content ul li::marker {
+      color: var(--accent-gold);
+    }
+
+    .article-content a {
+      color: var(--accent-gold);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .article-content a:hover {
+      border-bottom-color: var(--accent-gold);
+    }
+
+    .article-content strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .article-content blockquote {
+      background: var(--bg-secondary);
+      border-left: 4px solid var(--accent-gold);
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+      border-radius: 0 12px 12px 0;
+      font-style: italic;
+    }
+
+    .article-content blockquote p {
+      margin: 0;
+    }
+
+    /* Back Button */
+    .back-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-back:hover {
+      color: var(--text-primary);
+      border-color: var(--accent-gold);
+      background: rgba(160, 128, 80, 0.1);
+    }
+
+    .btn-back::before {
+      content: '←';
+      transition: transform 0.3s ease;
+    }
+
+    .btn-back:hover::before {
+      transform: translateX(-4px);
+    }
+
+    /* Loading State */
+    .loading {
+      text-align: center;
+      padding: 8rem 2rem;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid var(--border-color);
+      border-top-color: var(--accent-gold);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Error State */
+    .error-container {
+      text-align: center;
+      padding: 8rem 2rem;
+    }
+
+    .error-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .error-text {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    /* Footer */
+    footer {
+      background: #050505;
+      border-top: 1px solid var(--border-color);
+      padding: 3rem 1.5rem;
+    }
+
+    .footer-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      height: 48px;
+      width: auto;
+      opacity: 0.8;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-copy {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Social Links */
+    .social-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-top: 2rem;
+      gap: 1.5rem;
+    }
+
+    .social-item {
+      position: relative;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      overflow: hidden;
+    }
+
+    .social-link svg {
+      width: 40px;
+      height: 40px;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .social-link:hover {
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    .social-link.youtube:hover {
+      background: #FF0000;
+    }
+
+    .social-link.vk:hover {
+      background: #0077FF;
+    }
+
+    .social-link.pinterest:hover {
+      background: #E60023;
+    }
+
+    .social-link.telegram:hover {
+      background: #0088CC;
+    }
+
+    .social-link.max {
+      background: #000;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0;
+    }
+
+    .social-link.max img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .social-link.max:hover {
+      border-color: var(--accent-gold);
+      background: rgba(160, 128, 80, 0.2);
+    }
+
+    .star {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 14px;
+    }
+
+    .disclaimer {
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.75rem;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .article-header {
+        min-height: 50vh;
+        padding: 6rem 1rem 3rem;
+      }
+
+      .article-container {
+        padding: 1.5rem 1rem 4rem;
+      }
+
+      .article-content {
+        font-size: 1rem;
+      }
+
+      .article-content h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">
+        <img src="/images/logo.png" alt="Гектарь">
+      </div>
+      <div class="nav-links">
+        <a href="/" class="nav-link">Главная</a>
+        <a href="/blog.html" class="nav-link active">Блог</a>
+        <a href="tel:+79951691230" class="nav-link">+7 (995) 169-12-30</a>
+        <a href="/#" class="btn-primary">Фиксация клиента</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Article Content -->
+  <main id="article-main">
+    <div class="loading">
+      <div class="spinner"></div>
+      Загрузка статьи...
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <img src="/images/logo.png" alt="Гектарь" class="footer-logo">
+      <div class="footer-links">
+        <a href="/" class="footer-link">Главная</a>
+        <a href="/blog.html" class="footer-link">Блог</a>
+        <a href="tel:+79951691230" class="footer-link">+7 (995) 169-12-30</a>
+      </div>
+      
+      <!-- Social Links -->
+      <div class="social-links">
+        <!-- YouTube -->
+        <div class="social-item">
+          <a href="https://www.youtube.com/@gektarexpert" target="_blank" rel="noopener noreferrer" class="social-link youtube" title="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+          <span class="star">*</span>
+        </div>
+        
+        <!-- VK -->
+        <a href="https://vk.com/gektar.expert" target="_blank" rel="noopener noreferrer" class="social-link vk" title="VK">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.673 4 8.231c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.254-1.406 2.151-3.574 2.151-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/>
+          </svg>
+        </a>
+        
+        <!-- Pinterest -->
+        <a href="https://www.pinterest.com/gektarexpert/" target="_blank" rel="noopener noreferrer" class="social-link pinterest" title="Pinterest">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/>
+          </svg>
+        </a>
+        
+        <!-- Telegram -->
+        <a href="https://t.me/gektarexpert_agents" target="_blank" rel="noopener noreferrer" class="social-link telegram" title="Telegram">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+          </svg>
+        </a>
+        
+        <!-- MAX -->
+        <a href="https://max.ru/join/YnMdb16FNlLs-wTTF6a7sWa39jW2hVquJ_c73ChGi-k" target="_blank" rel="noopener noreferrer" class="social-link max" title="MAX">
+          <img src="/images/max-logo.png" alt="MAX" style="width: 32px; height: 32px; object-fit: contain;">
+        </a>
+      </div>
+      
+      <p class="disclaimer">* Meta Platforms Inc. признана экстремистской и запрещена на территории РФ</p>
+      
+      <p class="footer-copy">© 2025 Гектарь. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Format date
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      const options = { day: 'numeric', month: 'long', year: 'numeric' };
+      return date.toLocaleDateString('ru-RU', options);
+    }
+
+    // Get slug from URL
+    function getSlugFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('slug');
+    }
+
+    // Load article
+    async function loadArticle() {
+      const main = document.getElementById('article-main');
+      const slug = getSlugFromUrl();
+
+      if (!slug) {
+        main.innerHTML = `
+          <div class="error-container">
+            <h1 class="error-title">Статья не найдена</h1>
+            <p class="error-text">Укажите slug статьи в URL</p>
+            <a href="/blog.html" class="btn-primary">Вернуться к статьям</a>
+          </div>
+        `;
+        return;
+      }
+
+      try {
+        const response = await fetch('/blog/posts.json');
+        if (!response.ok) throw new Error('Failed to load posts');
+        
+        const data = await response.json();
+        const post = data.posts.find(p => p.slug === slug);
+        
+        if (!post) {
+          main.innerHTML = `
+            <div class="error-container">
+              <h1 class="error-title">Статья не найдена</h1>
+              <p class="error-text">Запрошенная статья не существует</p>
+              <a href="/blog.html" class="btn-primary">Вернуться к статьям</a>
+            </div>
+          `;
+          return;
+        }
+
+        // Update page title
+        document.title = `${post.title} — Блог ГектарЪ`;
+
+        main.innerHTML = `
+          <article>
+            <header class="article-header">
+              <img 
+                src="${post.image}" 
+                alt="${post.title}" 
+                class="article-hero-image"
+                onerror="this.src='/blog/images/placeholder.jpg'"
+              >
+              <div class="article-header-overlay"></div>
+              <div class="article-header-content">
+                <div class="article-meta">
+                  <span class="article-date">${formatDate(post.date)}</span>
+                  <span class="article-category">Полезное</span>
+                </div>
+                <h1 class="article-title">${post.title}</h1>
+              </div>
+            </header>
+            
+            <div class="article-container">
+              <div class="article-content">
+                ${post.content}
+              </div>
+            </div>
+            
+            <div class="back-section">
+              <a href="/blog.html" class="btn-back">Назад к статьям</a>
+            </div>
+          </article>
+        `;
+
+      } catch (error) {
+        console.error('Error loading article:', error);
+        main.innerHTML = `
+          <div class="error-container">
+            <h1 class="error-title">Ошибка загрузки</h1>
+            <p class="error-text">Не удалось загрузить статью. Пожалуйста, попробуйте позже.</p>
+            <a href="/blog.html" class="btn-primary">Вернуться к статьям</a>
+          </div>
+        `;
+      }
+    }
+
+    // Load article on page load
+    document.addEventListener('DOMContentLoaded', loadArticle);
+  </script>
+</body>
+</html>

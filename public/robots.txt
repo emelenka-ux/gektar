@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://partners.gektar.expert/sitemap.xml

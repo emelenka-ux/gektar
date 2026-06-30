@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Блог ГектарЪ — Полезные статьи о земельных инвестициях</title>
+  <meta name="description" content="Блог компании Гектарь: статьи о земельных инвестициях, выборе участков, партнёрской программе и рынке недвижимости.">
+  <link rel="icon" type="image/png" href="/images/logo.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #1a1a1a;
+      --bg-card: #111111;
+      --accent-gold: #a08050;
+      --accent-gold-hover: #8a7045;
+      --accent-green: #4ade80;
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-muted: rgba(255, 255, 255, 0.5);
+      --border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-link.active {
+      color: var(--accent-gold);
+    }
+
+    .btn-primary {
+      background: var(--accent-gold);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-gold-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 10rem 1.5rem 5rem;
+      text-align: center;
+      background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(15, 31, 21, 0.5) 50%, var(--bg-primary) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: 10%;
+      width: 400px;
+      height: 400px;
+      background: rgba(45, 90, 61, 0.1);
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 20%;
+      right: 10%;
+      width: 400px;
+      height: 400px;
+      background: rgba(160, 128, 80, 0.1);
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero h1 span {
+      color: var(--accent-green);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Blog Grid */
+    .blog-section {
+      padding: 4rem 1.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Blog Card */
+    .blog-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent-gold);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .blog-card:hover .card-image {
+      transform: scale(1.05);
+    }
+
+    .card-image-wrapper {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-image-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--bg-card) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .card-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-date {
+      font-size: 0.85rem;
+      color: var(--accent-gold);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-date::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: var(--accent-gold);
+      border-radius: 50%;
+    }
+
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+      color: var(--text-primary);
+    }
+
+    .card-excerpt {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .read-more {
+      color: var(--accent-gold);
+      text-decoration: none;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: gap 0.3s ease;
+    }
+
+    .read-more:hover {
+      gap: 0.75rem;
+    }
+
+    .read-more::after {
+      content: '→';
+      transition: transform 0.3s ease;
+    }
+
+    .read-more:hover::after {
+      transform: translateX(4px);
+    }
+
+    /* Loading State */
+    .loading {
+      text-align: center;
+      padding: 4rem;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid var(--border-color);
+      border-top-color: var(--accent-gold);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Error State */
+    .error {
+      text-align: center;
+      padding: 4rem;
+      color: var(--text-secondary);
+    }
+
+    /* Footer */
+    footer {
+      background: #050505;
+      border-top: 1px solid var(--border-color);
+      padding: 3rem 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      height: 48px;
+      width: auto;
+      opacity: 0.8;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-copy {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Social Links */
+    .social-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .social-item {
+      position: relative;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      overflow: hidden;
+    }
+
+    .social-link svg {
+      width: 40px;
+      height: 40px;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .social-link:hover {
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    .social-link.youtube:hover {
+      background: #FF0000;
+    }
+
+    .social-link.vk:hover {
+      background: #0077FF;
+    }
+
+    .social-link.pinterest:hover {
+      background: #E60023;
+    }
+
+    .social-link.telegram:hover {
+      background: #0088CC;
+    }
+
+    .social-link.max {
+      background: #000;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0;
+    }
+
+    .social-link.max img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .social-link.max:hover {
+      border-color: var(--accent-gold);
+      background: rgba(160, 128, 80, 0.2);
+    }
+
+    .star {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 14px;
+    }
+
+    .disclaimer {
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.75rem;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero {
+        padding: 8rem 1rem 3rem;
+      }
+
+      .blog-section {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">
+        <img src="/images/logo.png" alt="Гектарь">
+      </div>
+      <div class="nav-links">
+        <a href="/" class="nav-link">Главная</a>
+        <a href="/blog" class="nav-link active">Блог</a>
+        <a href="tel:+79951691230" class="nav-link">+7 (995) 169-12-30</a>
+        <a href="/#" class="btn-primary">Фиксация клиента</a>
+      </div>
+      <button class="mobile-menu-btn" onclick="alert('Меню в разработке')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Блог <span>Гектарь</span></h1>
+      <p>Полезные статьи о земельных инвестициях, выборе участков и партнёрской программе</p>
+    </div>
+  </section>
+
+  <!-- Blog Grid -->
+  <section class="blog-section">
+    <div id="blog-grid" class="blog-grid">
+      <div class="loading">
+        <div class="spinner"></div>
+        Загрузка статей...
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <img src="/images/logo.png" alt="Гектарь" class="footer-logo">
+      <div class="footer-links">
+        <a href="/" class="footer-link">Главная</a>
+        <a href="/blog" class="footer-link">Блог</a>
+        <a href="tel:+79951691230" class="footer-link">+7 (995) 169-12-30</a>
+      </div>
+      
+      <!-- Social Links -->
+      <div class="social-links">
+        <!-- YouTube -->
+        <div class="social-item">
+          <a href="https://www.youtube.com/@gektarexpert" target="_blank" rel="noopener noreferrer" class="social-link youtube" title="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+          <span class="star">*</span>
+        </div>
+        
+        <!-- VK -->
+        <a href="https://vk.com/gektar.expert" target="_blank" rel="noopener noreferrer" class="social-link vk" title="VK">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.673 4 8.231c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.254-1.406 2.151-3.574 2.151-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/>
+          </svg>
+        </a>
+        
+        <!-- Pinterest -->
+        <a href="https://www.pinterest.com/gektarexpert/" target="_blank" rel="noopener noreferrer" class="social-link pinterest" title="Pinterest">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/>
+          </svg>
+        </a>
+        
+        <!-- Telegram -->
+        <a href="https://t.me/gektarexpert_agents" target="_blank" rel="noopener noreferrer" class="social-link telegram" title="Telegram">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+          </svg>
+        </a>
+        
+        <!-- MAX -->
+        <a href="https://max.ru/join/YnMdb16FNlLs-wTTF6a7sWa39jW2hVquJ_c73ChGi-k" target="_blank" rel="noopener noreferrer" class="social-link max" title="MAX">
+          <img src="/images/max-logo.png" alt="MAX" style="width: 32px; height: 32px; object-fit: contain;">
+        </a>
+      </div>
+      
+      <p class="disclaimer">* Meta Platforms Inc. признана экстремистской и запрещена на территории РФ</p>
+      
+      <p class="footer-copy">© 2025 Гектарь. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Format date
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      const options = { day: 'numeric', month: 'long', year: 'numeric' };
+      return date.toLocaleDateString('ru-RU', options);
+    }
+
+    // Load and display posts
+    async function loadPosts() {
+      const grid = document.getElementById('blog-grid');
+      
+      try {
+        const response = await fetch('/blog/posts.json');
+        if (!response.ok) throw new Error('Failed to load posts');
+        
+        const data = await response.json();
+        const posts = data.posts || [];
+        
+        if (posts.length === 0) {
+          grid.innerHTML = '<div class="error">Пока нет статей</div>';
+          return;
+        }
+
+        // Sort by date (newest first)
+        posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        grid.innerHTML = posts.map(post => `
+          <article class="blog-card" onclick="window.location.href='/blog/article.html?slug=${post.slug}'">
+            <div class="card-image-wrapper">
+              <img 
+                src="${post.image}" 
+                alt="${post.title}" 
+                class="card-image"
+                onerror="this.src='/blog/images/placeholder.jpg'"
+              >
+            </div>
+            <div class="card-content">
+              <div class="card-date">${formatDate(post.date)}</div>
+              <h2 class="card-title">${post.title}</h2>
+              <p class="card-excerpt">${post.excerpt}</p>
+              <div class="card-footer">
+                <a href="/blog-article.html?slug=${post.slug}" class="read-more">Читать подробнее</a>
+              </div>
+            </div>
+          </article>
+        `).join('');
+
+      } catch (error) {
+        console.error('Error loading posts:', error);
+        grid.innerHTML = `
+          <div class="error">
+            <p>Не удалось загрузить статьи</p>
+            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Пожалуйста, попробуйте позже</p>
+          </div>
+        `;
+      }
+    }
+
+    // Load posts on page load
+    document.addEventListener('DOMContentLoaded', loadPosts);
+  </script>
+</body>
+</html>
