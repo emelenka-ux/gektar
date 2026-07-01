@@ -157,7 +157,7 @@ export default function HomePage() {
 
               <motion.h1 initial="hidden" animate="show"
                 variants={{ hidden: {}, show: { transition: { staggerChildren: 0.14, delayChildren: 0.15 } } }}
-                className="font-display text-white text-[42px] sm:text-6xl lg:text-[76px] font-bold">
+                className="font-display text-white text-[32px] sm:text-6xl lg:text-[76px] font-bold">
                 <motion.span variants={lineReveal} className="block">Зарабатывайте</motion.span>
                 <motion.span variants={lineReveal} className="block">на земле</motion.span>
               </motion.h1>
@@ -238,7 +238,7 @@ export default function HomePage() {
         <motion.div {...fadeUp} className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4">
           {stats.map((s, i) => (
             <div key={i} className="bg-[#f4f1ea] rounded-3xl p-7 text-center">
-              <div className="font-display text-4xl lg:text-5xl font-bold text-[#1c5238]">
+              <div className="font-display text-[26px] sm:text-4xl lg:text-5xl font-bold text-[#1c5238]">
                 <CountUp end={s.value} duration={2.2} suffix={s.suffix} />
               </div>
               <div className="mt-2 text-[14px] text-[#16201a]/55">{s.label}</div>
@@ -325,7 +325,7 @@ export default function HomePage() {
                     <p className="mono text-[12px] tracking-[0.18em] uppercase text-[#2fae5b] mb-4">
                       Проект {String(i + 1).padStart(2, '0')} — {land.region}
                     </p>
-                    <h3 className="font-display text-4xl sm:text-5xl lg:text-[58px] font-bold leading-[1.02]">{land.name}</h3>
+                    <h3 className="font-display text-[30px] sm:text-5xl lg:text-[58px] font-bold leading-[1.05]">{land.name}</h3>
 
                     <div className="mt-8 grid grid-cols-3 gap-3 max-w-lg">
                       <div className="bg-white rounded-2xl px-4 py-4">
@@ -395,7 +395,7 @@ export default function HomePage() {
 
           <div className="glass rounded-[36px] p-8 lg:p-14 shadow-[0_12px_50px_rgba(20,40,28,0.10)]">
             <p className="text-[15px] text-[#16201a]/55">Сумма сделки</p>
-            <p className="font-display text-4xl lg:text-5xl font-bold mt-1 mb-8">{dealAmount.toLocaleString('ru-RU')} ₽</p>
+            <p className="font-display text-[28px] sm:text-4xl lg:text-5xl font-bold mt-1 mb-8">{dealAmount.toLocaleString('ru-RU')} ₽</p>
 
             <input type="range" min={sliderMin} max={sliderMax} step={100000} value={dealAmount}
               onChange={(e) => setDealAmount(Number(e.target.value))}
@@ -409,7 +409,7 @@ export default function HomePage() {
             <div className="mt-10 pt-10 border-t border-[#16201a]/10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <div>
                 <p className="text-[15px] text-[#16201a]/55">Ваша комиссия · 20%</p>
-                <p className="font-display text-5xl lg:text-6xl font-bold text-[#1c5238] mt-2">{commission.toLocaleString('ru-RU')} ₽</p>
+                <p className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1c5238] mt-2">{commission.toLocaleString('ru-RU')} ₽</p>
               </div>
               <button onClick={() => setIsModalOpen(true)}
                 className="bg-[#2fae5b] hover:bg-[#27964d] text-white px-6 py-3.5 rounded-full text-[16px] font-semibold transition-colors">
