@@ -9,7 +9,7 @@ const moscowData = {
   inDevelopment: false,
   buttons: {
     presentation: 'https://disk.yandex.ru/d/wj0Sn3Si-c6f6g',
-    tour3d: 'https://partners.gektar.expert/tours/silverlake/',
+    tour3d: 'https://partners.gektar.expert/tour/silverlake/',
     chess: 'https://disk.yandex.ru/d/9qcBLKJh5BjZQA',
     renders: 'https://disk.yandex.ru/d/bLLEDs7oXq8OdA',
     layouts: 'https://disk.yandex.ru/d/LH6TWvl_Se22Gw',

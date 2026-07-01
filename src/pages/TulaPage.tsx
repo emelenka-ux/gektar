@@ -35,7 +35,7 @@ const tulaObjects: TulaObject[] = [
     mapUrl: 'https://yandex.ru/maps/?pt=37.4,54.1&z=12&l=sat',
     buttons: {
       presentation: 'https://disk.yandex.ru/d/oUWRFMMZ-00CnA',
-      tour3d: 'https://partners.gektar.expert/tours/kostomarovo/',
+      tour3d: 'https://partners.gektar.expert/tour/kostomarovo/',
       chess: 'https://disk.yandex.ru/d/llY2awAFb4a7zQ',
       renders: 'https://disk.yandex.ru/d/q8nWvr6Kz_owDA',
       layouts: 'https://disk.yandex.ru/d/HDAoTsLurayayA',
