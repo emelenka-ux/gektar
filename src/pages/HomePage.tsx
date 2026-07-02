@@ -141,8 +141,8 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#0c1711]/95 via-[#0c1711]/60 to-transparent" />
 
         {/* faded background wordmark — signature */}
-        <div aria-hidden className="absolute -bottom-6 sm:bottom-4 left-0 right-0 text-center pointer-events-none select-none">
-          <span className="font-display text-white/10 text-[19vw] leading-none font-bold">ГЕКТАРЪ</span>
+        <div aria-hidden className="absolute bottom-6 sm:bottom-8 left-0 right-0 text-center pointer-events-none select-none overflow-hidden">
+          <span className="font-display text-white/10 text-[14vw] leading-none font-bold whitespace-nowrap tracking-[-0.03em]">ГЕКТАРЪ</span>
         </div>
 
         <motion.div style={{ opacity: heroFade }} className="relative z-10 w-full max-w-6xl mx-auto px-5 sm:px-6 pb-14 lg:pb-20 pt-28">
