@@ -138,7 +138,7 @@ export default function HomePage() {
       {/* ===== Hero ===== */}
       <section ref={heroRef} className="relative min-h-[100svh] flex items-end overflow-hidden">
         <motion.img style={{ y: heroY, scale: heroScale }} src="/images/hero-river-view.png" alt="Земельные участки с высоты" className="absolute inset-0 w-full h-full object-cover will-change-transform" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0c1711]/85 via-[#0c1711]/25 to-[#0c1711]/35" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0c1711]/95 via-[#0c1711]/60 to-transparent" />
 
         {/* faded background wordmark — signature */}
         <div aria-hidden className="absolute -bottom-6 sm:bottom-4 left-0 right-0 text-center pointer-events-none select-none">
@@ -157,13 +157,13 @@ export default function HomePage() {
 
               <motion.h1 initial="hidden" animate="show"
                 variants={{ hidden: {}, show: { transition: { staggerChildren: 0.14, delayChildren: 0.15 } } }}
-                className="font-display text-white text-[32px] sm:text-6xl lg:text-[76px] font-bold">
+                className="hero-shadow font-display text-white text-[32px] sm:text-6xl lg:text-[76px] font-bold">
                 <motion.span variants={lineReveal} className="block">Зарабатывайте</motion.span>
                 <motion.span variants={lineReveal} className="block">на земле</motion.span>
               </motion.h1>
 
               <motion.p initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, delay: 0.35 }}
-                className="mt-6 text-[17px] sm:text-xl text-white/85 max-w-xl leading-relaxed">
+                className="hero-shadow mt-6 text-[17px] sm:text-xl text-white/90 max-w-xl leading-relaxed">
                 Станьте партнёром ГектарЪ и получайте <span className="text-white font-semibold">20% комиссии</span> с каждой сделки по земельным участкам. До 5 млн ₽ с одной продажи.
               </motion.p>
 
