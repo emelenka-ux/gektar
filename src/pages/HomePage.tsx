@@ -102,7 +102,7 @@ export default function HomePage() {
                   {l.label}
                 </button>
               ))}
-              <a href="/blog" className="text-[14px] font-medium text-[#16201a]/70 hover:text-[#16201a] transition-colors">Блог</a>
+              <a href="/blog/" className="text-[14px] font-medium text-[#16201a]/70 hover:text-[#16201a] transition-colors">Блог</a>
             </div>
 
             <div className="hidden lg:flex items-center gap-3">
@@ -125,7 +125,7 @@ export default function HomePage() {
                   {navLinks.map((l) => (
                     <button key={l.target} onClick={() => scrollTo(l.target)} className="block w-full text-left py-2.5 text-[16px] font-medium">{l.label}</button>
                   ))}
-                  <a href="/blog" className="block py-2.5 text-[16px] font-medium">Блог</a>
+                  <a href="/blog/" className="block py-2.5 text-[16px] font-medium">Блог</a>
                   <a href="tel:+79951691230" className="block py-2.5 text-[16px] font-semibold text-[#1c5238]">+7 (995) 169-12-30</a>
                   <button onClick={() => { setIsMobileMenuOpen(false); setIsModalOpen(true) }} className="mt-2 w-full bg-[#1c5238] text-white text-[15px] font-semibold py-3 rounded-full">Фиксация клиента</button>
                 </div>
