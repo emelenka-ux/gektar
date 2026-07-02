@@ -13,7 +13,7 @@ const crimeaData = {
     chess: 'https://disk.yandex.ru/d/dHRbJLGsJrOxmw',
     renders: 'https://disk.yandex.ru/d/w2E-QWuVR00aVA',
     layouts: 'https://disk.yandex.ru/d/tT84ySmjQYByhQ',
-    profitability: '#/installment/crimea',
+    profitability: '/installment/crimea',
     documentsClient: 'https://disk.yandex.ru/d/ymbuRYnn8R0EYw',
     documentsAgent: 'https://disk.yandex.ru/d/ymbuRYnn8R0EYw',
     photos: 'https://disk.yandex.ru/d/a5OQRj2EUfZamg'

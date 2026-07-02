@@ -38,7 +38,7 @@ export default function InstallmentPage() {
 
   return (
     <div className="min-h-screen bg-white text-[#16201a]">
-      <a href="#/" className="fixed top-5 left-5 z-50 glass rounded-full px-4 py-2 flex items-center gap-2 text-[#16201a] text-sm font-medium hover:bg-white/80 transition-colors shadow-[0_4px_16px_rgba(20,40,28,0.1)]">
+      <a href="/" className="fixed top-5 left-5 z-50 glass rounded-full px-4 py-2 flex items-center gap-2 text-[#16201a] text-sm font-medium hover:bg-white/80 transition-colors shadow-[0_4px_16px_rgba(20,40,28,0.1)]">
         <ArrowLeft className="w-4 h-4" /> На главную
       </a>
 

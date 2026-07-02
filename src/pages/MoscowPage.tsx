@@ -13,7 +13,7 @@ const moscowData = {
     chess: 'https://disk.yandex.ru/d/9qcBLKJh5BjZQA',
     renders: 'https://disk.yandex.ru/d/bLLEDs7oXq8OdA',
     layouts: 'https://disk.yandex.ru/d/LH6TWvl_Se22Gw',
-    profitability: '#/installment/moscow',
+    profitability: '/installment/moscow',
     documentsClient: 'https://disk.yandex.ru/d/wj0Sn3Si-c6f6g',
     documentsAgent: 'https://disk.yandex.ru/d/wj0Sn3Si-c6f6g',
     photos: 'https://disk.yandex.ru/d/ha8A5e2vpn_DzQ'

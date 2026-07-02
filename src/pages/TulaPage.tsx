@@ -39,7 +39,7 @@ const tulaObjects: TulaObject[] = [
       chess: 'https://disk.yandex.ru/d/llY2awAFb4a7zQ',
       renders: 'https://disk.yandex.ru/d/q8nWvr6Kz_owDA',
       layouts: 'https://disk.yandex.ru/d/HDAoTsLurayayA',
-      profitability: '#/installment/tula',
+      profitability: '/installment/tula',
       documentsClient: 'https://disk.yandex.ru/d/ymbuRYnn8R0EYw',
       documentsAgent: 'https://disk.yandex.ru/d/ymbuRYnn8R0EYw',
       photos: 'https://disk.yandex.ru/d/rjc02njnEoeu9Q'
@@ -58,7 +58,7 @@ const tulaObjects: TulaObject[] = [
       chess: 'https://disk.yandex.ru/d/A-4OIyQsq--AnQ',
       renders: 'https://disk.yandex.ru/d/pKCa2_frC8agoQ',
       layouts: 'https://disk.yandex.ru/d/OOfk0Cwuf3NJSQ',
-      profitability: '#/installment/tula',
+      profitability: '/installment/tula',
       documentsClient: '',
       documentsAgent: '',
       photos: 'https://disk.yandex.ru/d/0LutE9MajGAX6g'
@@ -109,7 +109,7 @@ export default function TulaPage() {
         </AnimatePresence>
         <div className="absolute inset-0 bg-gradient-to-t from-[#0c1711]/85 via-[#0c1711]/25 to-[#0c1711]/40" />
 
-        <a href="#/" className="absolute top-5 left-5 z-30 glass-soft rounded-full px-4 py-2 flex items-center gap-2 text-white text-sm font-medium hover:bg-white/30 transition-colors">
+        <a href="/" className="absolute top-5 left-5 z-30 glass-soft rounded-full px-4 py-2 flex items-center gap-2 text-white text-sm font-medium hover:bg-white/30 transition-colors">
           <ArrowLeft className="w-4 h-4" /> На главную
         </a>
 

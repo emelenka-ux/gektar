@@ -46,12 +46,12 @@ export default function BlogPage() {
       <nav className="fixed top-3 inset-x-0 z-50 px-3 sm:px-5">
         <div className="max-w-6xl mx-auto glass rounded-full shadow-[0_8px_30px_rgba(20,40,28,0.12)]">
           <div className="px-4 sm:px-5 h-14 flex items-center justify-between">
-            <a href="#/" className="flex items-center gap-2">
+            <a href="/" className="flex items-center gap-2">
               <img src="/images/logo.png" alt="ГектарЪ" className="h-8 w-auto" />
               <span className="text-[17px] font-extrabold tracking-tight">ГектарЪ</span>
             </a>
             <div className="flex items-center gap-5">
-              <a href="#/" className="text-[14px] font-medium text-[#16201a]/70 hover:text-[#16201a] transition-colors flex items-center gap-1.5">
+              <a href="/" className="text-[14px] font-medium text-[#16201a]/70 hover:text-[#16201a] transition-colors flex items-center gap-1.5">
                 <ArrowLeft className="w-4 h-4" /> На главную
               </a>
               <a href="tel:+79951691230" className="hidden sm:block text-[14px] font-semibold text-[#1c5238]">+7 (995) 169-12-30</a>

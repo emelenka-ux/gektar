@@ -13,7 +13,7 @@ const tverData = {
     chess: 'https://disk.yandex.ru/d/_bA0jHhzuMWOjg',
     renders: 'https://disk.yandex.ru/d/r1JgHzfbfx8iUA',
     layouts: 'https://disk.yandex.ru/d/OQIj3TKbDJTlIQ',
-    profitability: '#/installment/tver',
+    profitability: '/installment/tver',
     documentsClient: 'https://disk.yandex.ru/d/ymbuRYnn8R0EYw',
     documentsAgent: 'https://disk.yandex.ru/d/ymbuRYnn8R0EYw',
     photos: 'https://disk.yandex.ru/d/NuE37AQZJvehDg'

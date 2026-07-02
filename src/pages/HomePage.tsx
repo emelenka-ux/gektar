@@ -7,10 +7,10 @@ import Footer from '../components/Footer'
 import { usePageMeta } from '../lib/usePageMeta'
 
 const lands = [
-  { id: 1, region: 'Тульская область', name: 'Щекинские берега', location: '200 км от Москвы', type: 'ИЖС', area: '4 га', image: '/images/tula-plan.png', link: '#/tula' },
-  { id: 2, region: 'Тверская область', name: 'Светлая долина', location: '235 км от Москвы', type: 'Сельхоз', area: '170 га', image: '/images/tver-plan.png', link: '#/tver' },
-  { id: 3, region: 'Крым', name: 'Крымская Ривьера', location: '1 км до моря', type: 'Сельхоз / ИЖС', area: '2 га', image: '/images/crimea-plan.png', link: '#/crimea' },
-  { id: 4, region: 'Московская область', name: 'Подмосковье', location: '165 км от МКАД', type: 'Сельхоз', area: '4,29 га', image: '/images/moscow-plan.png', link: '#/moscow' },
+  { id: 1, region: 'Тульская область', name: 'Щекинские берега', location: '200 км от Москвы', type: 'ИЖС', area: '4 га', image: '/images/tula-plan.png', link: '/tula' },
+  { id: 2, region: 'Тверская область', name: 'Светлая долина', location: '235 км от Москвы', type: 'Сельхоз', area: '170 га', image: '/images/tver-plan.png', link: '/tver' },
+  { id: 3, region: 'Крым', name: 'Крымская Ривьера', location: '1 км до моря', type: 'Сельхоз / ИЖС', area: '2 га', image: '/images/crimea-plan.png', link: '/crimea' },
+  { id: 4, region: 'Московская область', name: 'Подмосковье', location: '165 км от МКАД', type: 'Сельхоз', area: '4,29 га', image: '/images/moscow-plan.png', link: '/moscow' },
 ]
 
 const reasons = [
@@ -80,7 +80,7 @@ export default function HomePage() {
   }
 
   useEffect(() => {
-    if (window.location.hash === '#/lands') {
+    if (window.location.hash === '/lands') {
       setTimeout(() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }), 120)
     }
   }, [])
@@ -91,7 +91,7 @@ export default function HomePage() {
       <nav className="fixed top-3 inset-x-0 z-50 px-3 sm:px-5">
         <div className="max-w-6xl mx-auto glass rounded-full shadow-[0_8px_30px_rgba(20,40,28,0.12)]">
           <div className="px-4 sm:px-5 h-14 flex items-center justify-between">
-            <a href="#/" className="flex items-center gap-2 shrink-0">
+            <a href="/" className="flex items-center gap-2 shrink-0">
               <img src="/images/logo.png" alt="ГектарЪ" className="h-8 w-auto" />
               <span className="text-[17px] font-extrabold tracking-tight">ГектарЪ</span>
             </a>
@@ -102,7 +102,7 @@ export default function HomePage() {
                   {l.label}
                 </button>
               ))}
-              <a href="#/blog" className="text-[14px] font-medium text-[#16201a]/70 hover:text-[#16201a] transition-colors">Блог</a>
+              <a href="/blog" className="text-[14px] font-medium text-[#16201a]/70 hover:text-[#16201a] transition-colors">Блог</a>
             </div>
 
             <div className="hidden lg:flex items-center gap-3">
@@ -125,7 +125,7 @@ export default function HomePage() {
                   {navLinks.map((l) => (
                     <button key={l.target} onClick={() => scrollTo(l.target)} className="block w-full text-left py-2.5 text-[16px] font-medium">{l.label}</button>
                   ))}
-                  <a href="#/blog" className="block py-2.5 text-[16px] font-medium">Блог</a>
+                  <a href="/blog" className="block py-2.5 text-[16px] font-medium">Блог</a>
                   <a href="tel:+79951691230" className="block py-2.5 text-[16px] font-semibold text-[#1c5238]">+7 (995) 169-12-30</a>
                   <button onClick={() => { setIsMobileMenuOpen(false); setIsModalOpen(true) }} className="mt-2 w-full bg-[#1c5238] text-white text-[15px] font-semibold py-3 rounded-full">Фиксация клиента</button>
                 </div>

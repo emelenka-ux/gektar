@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import BlogPage from './pages/BlogPage'
 import TulaPage from './pages/TulaPage'
@@ -10,7 +10,7 @@ import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -21,7 +21,7 @@ function App() {
         <Route path="/moscow" element={<MoscowPage />} />
         <Route path="/installment/:land?" element={<InstallmentPage />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   )
 }
 

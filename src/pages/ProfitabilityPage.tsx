@@ -77,11 +77,11 @@ export default function ProfitabilityPage() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <a href="#/" className="flex items-center gap-3">
+          <a href="/" className="flex items-center gap-3">
             <img src="/images/logo.png" alt="Гектарь" className="h-12 w-auto" />
           </a>
           <a
-            href="#/"
+            href="/"
             className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
@@ -235,7 +235,7 @@ export default function ProfitabilityPage() {
           <p className="text-white/50 mb-4">
             Развитие территорий
           </p>
-          <a href="#/" className="text-[#a08050] hover:text-[#c0a070] transition-colors">
+          <a href="/" className="text-[#a08050] hover:text-[#c0a070] transition-colors">
             Вернуться на главную
           </a>
           <p className="text-white/30 mt-8 text-sm">

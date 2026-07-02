@@ -1,0 +1,30 @@
+# SPA (React Router, BrowserRouter) fallback for Apache / reg.ru
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # /blog is a SPA route, but a real /blog/ data directory also exists —
+  # force the exact /blog path to the SPA (its assets like /blog/posts.json
+  # keep being served directly because they are real files).
+  RewriteRule ^blog/?$ /index.html [L]
+
+  # Don't touch the entry file itself
+  RewriteRule ^index\.html$ - [L]
+
+  # Everything that is NOT a real file or directory -> serve the SPA.
+  # Real assets (/assets, /images, /tour, /blog/posts.json, sitemap.xml ...)
+  # are served normally.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Long cache for hashed static assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 6 months"
+  ExpiresByType image/jpeg "access plus 6 months"
+  ExpiresByType image/webp "access plus 6 months"
+</IfModule>
