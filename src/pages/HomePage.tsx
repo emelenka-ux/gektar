@@ -9,7 +9,7 @@ import { usePageMeta } from '../lib/usePageMeta'
 const lands = [
   { id: 1, region: 'Тульская область', name: 'Щекинские берега', location: '200 км от Москвы', type: 'ИЖС', area: '4 га', image: '/images/tula-plan.png', link: '/tula' },
   { id: 2, region: 'Тверская область', name: 'Светлая долина', location: '235 км от Москвы', type: 'Сельхоз', area: '170 га', image: '/images/tver-plan.png', link: '/tver' },
-  { id: 3, region: 'Крым', name: 'Крымская Ривьера', location: '1 км до моря', type: 'Сельхоз / ИЖС', area: '2 га', image: '/images/crimea-plan.png', link: '/crimea' },
+  { id: 3, region: 'Крым', name: 'У-Дачный Крым', location: '1 км до моря', type: 'Сельхоз / ИЖС', area: '2 га', image: '/images/crimea-plan.png', link: '/crimea' },
   { id: 4, region: 'Московская область', name: 'Подмосковье', location: '165 км от МКАД', type: 'Сельхоз', area: '4,29 га', image: '/images/moscow-plan.png', link: '/moscow' },
 ]
 
@@ -265,7 +265,7 @@ export default function HomePage() {
           </motion.h2>
           <div className="grid lg:grid-cols-2 gap-6 items-stretch">
             <motion.div {...fadeUp} className="rounded-[32px] overflow-hidden min-h-[320px] relative">
-              <img src="/images/tver-bg.jpg" alt="Земельные участки" className="absolute inset-0 w-full h-full object-cover" />
+              <img src="/images/reasons-land.jpg" alt="Аэровид земельных угодий ГектарЪ" className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
               <div className="absolute bottom-6 left-6 glass-soft rounded-2xl px-6 py-5">
                 <div className="font-display text-4xl lg:text-5xl font-bold text-white">600 га</div>

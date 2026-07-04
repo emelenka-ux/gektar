@@ -15,7 +15,7 @@ interface LandConfig {
 const landConfigs: Record<string, LandConfig> = {
   tula: { name: 'Щекинские берега (Тула)', minPayment: 100000, maxPayment: 5000000, months: 12, downPaymentPercent: 30 },
   tver: { name: 'Светлая долина (Тверь)', minPayment: 100000, maxPayment: 5000000, months: 12, downPaymentPercent: 30 },
-  crimea: { name: 'Крымская Ривьера (Крым)', minPayment: 125000, maxPayment: 10000000, months: 12, downPaymentPercent: 30 },
+  crimea: { name: 'У-Дачный Крым', minPayment: 125000, maxPayment: 10000000, months: 12, downPaymentPercent: 30 },
   moscow: { name: 'Серебряные пруды (Московская область)', minPayment: 100000, maxPayment: 5000000, months: 12, downPaymentPercent: 30 },
 }
 

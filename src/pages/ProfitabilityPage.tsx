@@ -32,7 +32,7 @@ const landConfigs: Record<string, LandConfig> = {
     monthlyPayment: 245000
   },
   crimea: {
-    name: 'Крымская Ривьера (Крым)',
+    name: 'У-Дачный Крым',
     pricePerSotka: 125000,
     minArea: 1,
     maxArea: 100,
