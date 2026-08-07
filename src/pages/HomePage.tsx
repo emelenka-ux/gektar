@@ -9,7 +9,7 @@ import { usePageMeta } from '../lib/usePageMeta'
 const lands = [
   { id: 1, region: 'Тульская область', name: 'Щекинские берега', location: '200 км от Москвы', type: 'ИЖС', area: '4 га', image: '/images/tula-plan.png', link: '/tula' },
   { id: 2, region: 'Тверская область', name: 'Светлая долина', location: '235 км от Москвы', type: 'Сельхоз', area: '170 га', image: '/images/tver-plan.png', link: '/tver' },
-  { id: 3, region: 'Крым', name: 'У-Дачный Крым', location: '1 км до моря', type: 'Сельхоз / ИЖС', area: '2 га', image: '/images/crimea-plan.png', link: '/crimea' },
+  { id: 3, region: 'Крым', name: 'У-Дачный Крым', location: '1 км до моря', type: 'Сельхоз / ЛПХ', area: '2 га', image: '/images/crimea-plan.png', link: '/crimea' },
   { id: 4, region: 'Московская область', name: 'Подмосковье', location: '165 км от МКАД', type: 'Сельхоз', area: '4,29 га', image: '/images/moscow-plan.png', link: '/moscow' },
 ]
 
