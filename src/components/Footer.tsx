@@ -17,12 +17,17 @@ export default function Footer() {
 
         <SocialLinks size="md" className="mt-10" />
 
-        <p className="text-center text-[#86868b] text-[12px] mt-8 max-w-2xl mx-auto leading-relaxed">
+        {/* ⚠️ ЧЕРНОВИК реквизитов — ЗАМЕНИТЬ на реальные данные юрлица */}
+        <div className="border-t border-black/[0.06] mt-10 pt-8 text-center text-[#86868b] text-[13px] leading-relaxed max-w-2xl mx-auto">
+          ООО «ГектарЪ» · ИНН 0000000000 · ОГРН 0000000000000 · <span className="whitespace-nowrap">заменить на реальные реквизиты</span>
+        </div>
+
+        <p className="text-center text-[#86868b] text-[12px] mt-6 max-w-2xl mx-auto leading-relaxed">
           * Meta Platforms Inc. признана экстремистской и запрещена на территории РФ
         </p>
 
         <div className="border-t border-black/[0.06] mt-8 pt-8 text-center text-[#86868b] text-[13px]">
-          © 2024 ГектарЪ. Все права защищены.
+          © {new Date().getFullYear()} ГектарЪ. Все права защищены.
         </div>
       </div>
     </footer>

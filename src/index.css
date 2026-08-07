@@ -38,9 +38,45 @@
   border-color: hsl(var(--border));
 }
 
+/* Visible keyboard focus for all interactive elements (WCAG 2.4.7).
+   Mouse clicks don't trigger :focus-visible, so this only shows for keyboard nav. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid hsl(var(--green-cta));
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+/* On dark/photo surfaces keep the ring readable with a light halo */
+.glass-dark a:focus-visible,
+.glass-dark button:focus-visible,
+[data-on-dark] a:focus-visible,
+[data-on-dark] button:focus-visible {
+  outline-color: #6ee79a;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.35);
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+}
+
+/* Honour users who ask for less motion — kill smooth-scroll and long animations */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
 
 body {

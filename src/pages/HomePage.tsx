@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
-import { MapPin, ArrowRight, Menu, X, ArrowUpRight, Check } from 'lucide-react'
+import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion, MotionConfig } from 'framer-motion'
+import { MapPin, ArrowRight, Menu, X, ArrowUpRight, Check, UserPlus, FileSearch, Handshake, Wallet, ShieldCheck, Scale, BadgeCheck, Quote } from 'lucide-react'
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/ui/accordion'
 import ContactForm from '../components/ContactForm'
 import CountUp from '../components/CountUp'
 import Footer from '../components/Footer'
@@ -34,10 +35,40 @@ const bonuses = [
 ]
 
 const navLinks = [
+  { label: 'Как это работает', target: 'how' },
   { label: 'Проекты', target: 'projects' },
-  { label: 'Почему мы', target: 'reasons' },
   { label: 'Бонусы', target: 'bonuses' },
+  { label: 'Отзывы', target: 'testimonials' },
   { label: 'Калькулятор', target: 'calculator' },
+]
+
+const steps = [
+  { icon: UserPlus, title: 'Регистрация', description: 'Оставляете заявку и получаете личного менеджера. Доступ к презентациям, 3D-турам и договорам — сразу.' },
+  { icon: FileSearch, title: 'Фиксация клиента', description: 'Закрепляете клиента за собой в один клик. Он ваш — комиссию не перехватят.' },
+  { icon: Handshake, title: 'Показ и сделка', description: 'Мы готовим документы и ведём сделку юридически. Вы просто приводите клиента.' },
+  { icon: Wallet, title: 'Выплата за 3 дня', description: 'После регистрации сделки до 20% комиссии приходят на счёт в течение 3 рабочих дней.' },
+]
+
+const guarantees = [
+  { icon: ShieldCheck, title: 'Официальный договор', description: 'Партнёрское вознаграждение закреплено договором — не «на словах».' },
+  { icon: Scale, title: 'Юридическая чистота', description: 'Каждый участок — с кадастровым номером и проверенными документами.' },
+  { icon: BadgeCheck, title: 'Прозрачные выплаты', description: 'Фиксированный процент, понятные сроки, никаких скрытых условий.' },
+]
+
+// ⚠️ ЧЕРНОВЫЕ отзывы-заготовки — ЗАМЕНИТЬ на реальные (имя, город, фото по согласию).
+const testimonials = [
+  { quote: 'Привёл двух клиентов за первый месяц — обе сделки закрыли, выплату получил в срок. Документами занималась команда, я только показывал участки.', name: 'Партнёр из Москвы', role: 'риелтор · черновик — заменить', deal: '620 000 ₽ комиссии' },
+  { quote: 'Работаю с землёй впервые. Дали презентации, 3D-туры и готовые договоры — клиенту показывать одно удовольствие. Менеджер на связи постоянно.', name: 'Партнёр из Тулы', role: 'агент · черновик — заменить', deal: '3 сделки за квартал' },
+  { quote: 'Ценю, что клиент закрепляется за мной сразу. Никаких споров «чей клиент». Выплаты действительно приходят за 3 дня.', name: 'Партнёр из Твери', role: 'частный брокер · черновик — заменить', deal: '1 200 000 ₽ за полугодие' },
+]
+
+const faqs = [
+  { q: 'Кто может стать партнёром?', a: 'Риелторы, брокеры, агенты и частные лица. Опыт в земле не обязателен — мы даём материалы, обучение и личного менеджера.' },
+  { q: 'Как фиксируется клиент за мной?', a: 'Вы оставляете заявку на фиксацию клиента — он закрепляется за вами в системе. Комиссию по этому клиенту получаете именно вы.' },
+  { q: 'Когда и как я получу комиссию?', a: 'До 20% от суммы сделки. Выплата на счёт в течение 3 рабочих дней после регистрации сделки в Росреестре.' },
+  { q: 'Нужно ли платить за участие?', a: 'Нет. Участие в партнёрской программе бесплатное. Вы зарабатываете с продаж, никаких взносов.' },
+  { q: 'Кто оформляет документы и ведёт сделку?', a: 'Юридическое сопровождение полностью на нашей стороне — от проверки документов до регистрации. Вы приводите клиента, остальное берём на себя.' },
+  { q: 'С какими регионами можно работать?', a: 'Сейчас 4 проекта в 4 регионах: Тульская, Тверская, Московская области и Крым — суммарно 600 га.' },
 ]
 
 const ease = [0.16, 1, 0.3, 1] as const
@@ -59,6 +90,7 @@ export default function HomePage() {
     'ГектарЪ — партнёрская программа по земельным участкам · 20% комиссии',
     'Зарабатывайте до 20% комиссии с продажи земельных участков. 600 га земли в 4 регионах России, выплаты за 3 дня, юридическое сопровождение. До 5 млн ₽ с одной сделки.'
   )
+  const reduce = useReducedMotion()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [dealAmount, setDealAmount] = useState(2000000)
@@ -70,9 +102,10 @@ export default function HomePage() {
 
   const heroRef = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
-  const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '20%'])
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1.1, 1.25])
-  const heroFade = useTransform(scrollYProgress, [0, 0.8], [1, 0])
+  // Scroll-linked parallax stays flat for users who prefer reduced motion.
+  const heroY = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '20%'])
+  const heroScale = useTransform(scrollYProgress, [0, 1], reduce ? [1, 1] : [1.1, 1.25])
+  const heroFade = useTransform(scrollYProgress, [0, 0.8], reduce ? [1, 1] : [1, 0])
 
   const scrollTo = (id: string) => {
     setIsMobileMenuOpen(false)
@@ -86,6 +119,7 @@ export default function HomePage() {
   }, [])
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="min-h-screen bg-white text-[#16201a]">
       {/* ===== Floating glass nav ===== */}
       <nav className="fixed top-3 inset-x-0 z-50 px-3 sm:px-5">
@@ -290,6 +324,66 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ===== How it works — партнёрская воронка ===== */}
+      <section id="how" className="bg-[#0f1d15] py-20 lg:py-32 px-5 sm:px-6 text-white relative overflow-hidden" data-on-dark>
+        <div className="hectare-grid absolute inset-0 opacity-[0.5]" aria-hidden />
+        <div className="max-w-6xl mx-auto relative">
+          <motion.div {...fadeUp} className="max-w-2xl mb-14 lg:mb-20">
+            <p className="text-[13px] font-semibold tracking-[0.18em] uppercase text-[#3ec469] mb-4 mono">Как это работает</p>
+            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold">От заявки до выплаты — 4 шага</h2>
+            <p className="mt-5 text-[18px] text-white/60">Прозрачный путь партнёра. Вы приводите клиента — юридическую рутину и документы берём на себя.</p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {steps.map((s, i) => {
+              const Icon = s.icon
+              return (
+                <motion.div key={i}
+                  initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }}
+                  transition={{ duration: 0.6, delay: i * 0.1, ease }}
+                  className="glass-dark rounded-[28px] p-7 flex flex-col relative">
+                  <span className="font-display text-[15px] font-bold text-[#3ec469]/70 mb-5">{String(i + 1).padStart(2, '0')}</span>
+                  <div className="w-12 h-12 rounded-2xl bg-[#3ec469]/15 flex items-center justify-center mb-5">
+                    <Icon className="w-6 h-6 text-[#3ec469]" />
+                  </div>
+                  <h3 className="text-[18px] font-bold mb-2">{s.title}</h3>
+                  <p className="text-[14px] text-white/55 leading-relaxed">{s.description}</p>
+                </motion.div>
+              )
+            })}
+          </div>
+
+          {/* guarantees strip */}
+          <div className="mt-14 grid sm:grid-cols-3 gap-5">
+            {guarantees.map((g, i) => {
+              const Icon = g.icon
+              return (
+                <motion.div key={i}
+                  initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.6, delay: i * 0.08, ease }}
+                  className="flex gap-4 items-start rounded-3xl border border-white/10 px-6 py-6">
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.06] flex items-center justify-center shrink-0">
+                    <Icon className="w-5 h-5 text-[#3ec469]" />
+                  </div>
+                  <div>
+                    <h4 className="text-[15px] font-bold mb-1">{g.title}</h4>
+                    <p className="text-[13px] text-white/50 leading-relaxed">{g.description}</p>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </div>
+
+          <motion.div {...fadeUp} className="mt-12 flex justify-center">
+            <button onClick={() => setIsModalOpen(true)}
+              className="bg-[#2fae5b] hover:bg-[#27964d] text-white pl-7 pr-2.5 py-4 rounded-full text-[16px] font-semibold flex items-center gap-2 transition-colors">
+              Стать партнёром
+              <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center"><ArrowRight className="w-4 h-4" /></span>
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ===== Projects — "земля сверху" ===== */}
       <section id="projects" className="bg-[#f4f1ea] hectare-grid py-20 lg:py-28 px-5 sm:px-6">
         <div className="max-w-6xl mx-auto">
@@ -385,6 +479,38 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ===== Testimonials — соцпруф (ЧЕРНОВИК, заменить на реальные) ===== */}
+      <section id="testimonials" className="bg-white py-20 lg:py-28 px-5 sm:px-6">
+        <div className="max-w-6xl mx-auto">
+          <motion.div {...fadeUp} className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14">
+            <div>
+              <p className="text-[13px] font-semibold tracking-[0.18em] uppercase text-[#2fae5b] mb-3 mono">Отзывы партнёров</p>
+              <h2 className="tight text-3xl sm:text-4xl lg:text-5xl font-bold">Уже зарабатывают с нами</h2>
+            </div>
+            <p className="text-[16px] text-[#16201a]/55 max-w-xs">Реальные истории партнёров программы ГектарЪ.</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-5">
+            {testimonials.map((t, i) => (
+              <motion.div key={i}
+                initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.6, delay: i * 0.1, ease }}
+                className="bg-[#f4f1ea] rounded-[28px] p-7 flex flex-col">
+                <Quote className="w-8 h-8 text-[#2fae5b]/40 mb-4" />
+                <p className="text-[16px] text-[#16201a]/80 leading-relaxed flex-1">{t.quote}</p>
+                <div className="mt-6 pt-5 border-t border-[#16201a]/10">
+                  <div className="inline-flex items-center gap-1.5 bg-[#2fae5b]/12 text-[#1c5238] text-[13px] font-semibold rounded-full px-3 py-1 mb-3">
+                    <BadgeCheck className="w-3.5 h-3.5" /> {t.deal}
+                  </div>
+                  <p className="text-[15px] font-bold text-[#16201a]">{t.name}</p>
+                  <p className="text-[13px] text-[#16201a]/45">{t.role}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ===== Calculator ===== */}
       <section id="calculator" className="bg-white hectare-grid py-20 lg:py-28 px-5 sm:px-6">
         <motion.div {...fadeUp} className="max-w-4xl mx-auto">
@@ -418,6 +544,32 @@ export default function HomePage() {
             </div>
           </div>
         </motion.div>
+      </section>
+
+      {/* ===== FAQ ===== */}
+      <section id="faq" className="bg-white py-20 lg:py-28 px-5 sm:px-6">
+        <div className="max-w-3xl mx-auto">
+          <motion.div {...fadeUp} className="text-center mb-12">
+            <p className="text-[13px] font-semibold tracking-[0.18em] uppercase text-[#2fae5b] mb-4 mono">Вопросы и ответы</p>
+            <h2 className="tight text-3xl sm:text-4xl lg:text-5xl font-bold">Частые вопросы партнёров</h2>
+          </motion.div>
+
+          <motion.div {...fadeUp}>
+            <Accordion type="single" collapsible className="space-y-3">
+              {faqs.map((f, i) => (
+                <AccordionItem key={i} value={`item-${i}`}
+                  className="bg-[#f4f1ea] rounded-2xl border-none px-6 overflow-hidden">
+                  <AccordionTrigger className="text-left text-[16px] sm:text-[17px] font-semibold hover:no-underline py-5">
+                    {f.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-[15px] text-[#16201a]/65 leading-relaxed pb-5">
+                    {f.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </motion.div>
+        </div>
       </section>
 
       {/* ===== CTA ===== */}
@@ -457,5 +609,6 @@ export default function HomePage() {
         )}
       </AnimatePresence>
     </div>
+    </MotionConfig>
   )
 }
